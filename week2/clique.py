@@ -4,9 +4,6 @@ import random
 from time import time
 from pandas import DataFrame
 
-RANDOMIZATION = 3
-MAX_ITER = 5
-
 
 class MaxCliqueProblem:
     def __init__(self):
@@ -113,14 +110,6 @@ class MaxCliqueProblem:
 
 
 def run():
-    filenames = ["C125.9.clq", "johnson8-2-4.clq", "johnson16-2-4.clq", "MANN_a9.clq", "MANN_a27.clq",
-                 "p_hat1000-1.clq", "keller4.clq", "hamming8-4.clq", "brock200_1.clq", "brock200_2.clq",
-                 "brock200_3.clq", "brock200_4.clq",
-                 "gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "brock400_1.clq", "brock400_2.clq", "brock400_3.clq",
-                 "brock400_4.clq",
-                 "MANN_a45.clq", "sanr400_0.7.clq", "p_hat1000-2.clq", "p_hat500-3.clq", "p_hat1500-1.clq",
-                 "p_hat300-3.clq", "san1000.clq",
-                 "sanr200_0.9.clq"]
     filenames = ["brock200_1.clq", "brock200_2.clq", "brock200_3.clq", "brock200_4.clq",
                  "brock400_1.clq", "brock400_2.clq", "brock400_3.clq", "brock400_4.clq",
                  "C125.9.clq", "gen200_p0.9_44.clq", "gen200_p0.9_55.clq", "hamming8-4.clq", "johnson16-2-4.clq", "johnson8-2-4.clq",
@@ -143,8 +132,7 @@ def run():
             log_info = f"{filename}: clique size - {len(mcp.get_clique())}, time - {time_sec} "
             print(log_info)
             report_file.write(log_info)
-
-            report_file.write(mcp.get_clique())
+            report_file.write(str(mcp.get_clique()))
             report_file.write("\n")
 
             times.append(time_sec)
