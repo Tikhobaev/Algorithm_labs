@@ -1,13 +1,10 @@
-from time import time
-
-import networkx as nx
 import re
-
+from time import time
+import networkx as nx
 from pandas import DataFrame
-
-from branch_and_bound import BranchAndBound, BnBTimeoutException
-from heuristic import MaxCliqueProblem
-from problem import ProblemHandler
+from BnB.problem import ProblemHandler
+from BnB.heuristic import MaxCliqueProblem
+from BnB.branch_and_bound import BranchAndBound, BnBTimeoutException
 
 
 def read_graph_file(file_path: str):
@@ -101,6 +98,7 @@ if __name__ == '__main__':
                 pass
             total_time = round(time() - start_time, 3)
             bnb_times.append(total_time)
+            # Check on clique correctness is performed in BnB when best clique is found
             clique_nodes = bnb_algorithm.get_best_clique()
             bnb_clique_size = bnb_algorithm.best_obj_value
             clique_sizes.append(bnb_clique_size)

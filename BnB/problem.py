@@ -77,13 +77,13 @@ class ProblemHandler:
             if strategy == nx.coloring.strategy_random_sequential:
                 self._color_n_times(independent_sets, graph, strategy)
             else:
-                coloring_dct = nx.coloring.greedy_color(graph, strategy)
-                color2nodes = dict()
-                for node, color in coloring_dct.items():
-                    if color not in color2nodes:
-                        color2nodes[color] = []
-                    color2nodes[color].append(node)
-                for color, colored_nodes in color2nodes.items():
+                node_colors = nx.coloring.greedy_color(graph, strategy)
+                color_nodes = dict()
+                for node, color in node_colors.items():
+                    if color not in color_nodes:
+                        color_nodes[color] = []
+                    color_nodes[color].append(node)
+                for color, colored_nodes in color_nodes.items():
                     if len(colored_nodes) >= 3:
                         # Will not add ind sets that are just 2 not connected vertices
                         colored_nodes = tuple(sorted(colored_nodes))
@@ -94,13 +94,13 @@ class ProblemHandler:
     @staticmethod
     def _color_n_times(independent_sets, graph, strategy):
         for _ in range(40):
-            coloring_dct = nx.coloring.greedy_color(graph, strategy)
-            color2nodes = dict()
-            for node, color in coloring_dct.items():
-                if color not in color2nodes:
-                    color2nodes[color] = []
-                color2nodes[color].append(node)
-            for color, colored_nodes in color2nodes.items():
+            node_colors = nx.coloring.greedy_color(graph, strategy)
+            color_nodes = dict()
+            for node, color in node_colors.items():
+                if color not in color_nodes:
+                    color_nodes[color] = []
+                color_nodes[color].append(node)
+            for color, colored_nodes in color_nodes.items():
                 if len(colored_nodes) >= 3:
                     # Will not add ind sets that are just 2 not connected vertices
                     colored_nodes = tuple(sorted(colored_nodes))
